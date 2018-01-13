@@ -3,6 +3,7 @@ package at.edu.c02.calculator.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import at.edu.c02.calculator.Calculator;
@@ -53,8 +54,15 @@ public class CalculatorTest {
 
 	}
 	
-	
-	
+	@Test
+	public void testModOperation() throws Exception {
+		Calculator calc = new CalculatorImpl();
+		calc.push(50);
+		calc.push(7);
+		double result = calc.perform(Operation.mod);
+		
+		assertEquals(1, result, 0);
+	}
 	
 
 	//
@@ -84,5 +92,14 @@ public class CalculatorTest {
 			// e.getCause()
 		}
 
+	}
+	
+	public void testWrongModOperation() throws Exception {
+		Calculator calc = new CalculatorImpl();
+		calc.push(53);
+		calc.push(7);
+		double result = calc.perform(Operation.mod);
+		
+		Assert.assertNotSame(1, result);
 	}
 }
